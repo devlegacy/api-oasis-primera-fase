@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('hotels', 'Api\HotelController');
+
+Route::group(['prefix'=>'hotels'], function () {
+    Route::apiResource('/{hotel}/restaurants', 'Api\RestaurantController');
+    Route::apiResource('/{hotel}/bares', 'Api\BarController');
+});
