@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "1d05cb82-c50b-471f-a805-54d1c18e9972",
+		"name": "api-oasis-primera-fase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Api",
+			"item": [
+				{
+					"name": "Restaurants",
+					"item": [
+						{
+							"name": "All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API}}hotels/1/restaurants",
+									"host": [
+										"{{API}}hotels"
+									],
+									"path": [
+										"1",
+										"restaurants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API}}hotels/1/restaurants/23",
+									"host": [
+										"{{API}}hotels"
+									],
+									"path": [
+										"1",
+										"restaurants",
+										"23"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Bares",
+					"item": [
+						{
+							"name": "All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API}}hotels/1/bares",
+									"host": [
+										"{{API}}hotels"
+									],
+									"path": [
+										"1",
+										"bares"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	]
+}
