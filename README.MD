@@ -60,6 +60,7 @@ DB_PASSWORD=
 ## Files
 
 Se ha añadido una colección de postman junto a sus variables de entorno para probar las URI's realizadas para la API.
+
 +&nbsp;:open_file_folder: `project-name`
 
 &nbsp;|&nbsp;&nbsp;+-- :open_file_folder: `postman`
