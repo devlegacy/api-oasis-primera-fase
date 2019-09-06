@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
+// \DB::listen(function ($sql, $bindings, $time) {
+//     var_dump($sql);
+//     var_dump($bindings);
+//     var_dump($time);
+// });
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

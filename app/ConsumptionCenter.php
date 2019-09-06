@@ -16,8 +16,4 @@ class ConsumptionCenter extends Model
         return $this->hasMany(ConsumtionCenterSchelude::class, 'centro_consumo_id');
     }
 
-    public function getFirstNameAttribute()
-    {
-        return 'Hola';
-    }
 }

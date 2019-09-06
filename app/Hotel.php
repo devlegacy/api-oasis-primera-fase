@@ -8,9 +8,10 @@ use App\ConsumptionCenter;
 class Hotel extends Model
 {
     protected $table = 'hoteles';
-    // protected $fillable = [];
     // protected $connection = '';
+    // protected $fillable = [];
     // protected $guarded = [];
+    // protected $appends = [];
 
     public function consumptionCenter()
     {

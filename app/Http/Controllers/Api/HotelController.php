@@ -6,6 +6,7 @@ use App\Constants\ConsumtionCenterCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Hotel;
+use App\Http\Resources\Hotel\HotelResource;
 use Symfony\Component\HttpFoundation\Response;
 
 class HotelController extends Controller
@@ -39,15 +40,15 @@ class HotelController extends Controller
      */
     public function show($id)
     {
-        $hotel = Hotel::with(['consumptionCenter' => function ($query) {
-            $query->with(['schedules' => function ($query) {
-                $query->where('dia', '=', '3');
-            }])->where('categoria_id', ConsumtionCenterCategory::RESTAURANTES);
-        }])->findOrFail($id);
-        $hotel = $hotel->consumptionCenter->filter(function ($h) {
-            return !$h->schedules->isEmpty();
-        });
-
+        // $hotel = Hotel::with(['consumptionCenter' => function ($query) {
+        //     $query->with(['schedules' => function ($query) {
+        //         $query->where('dia', '=', '3');
+        //     }])->where('categoria_id', ConsumtionCenterCategory::RESTAURANTES);
+        // }])->findOrFail($id);
+        // $hotel = $hotel->consumptionCenter->filter(function ($h) {
+        //     return !$h->schedules->isEmpty();
+        // });
+        $hotel = new HotelResource(Hotel::findOrFail($id));
         return response([
           // consumption_center
           'data' => $hotel,

@@ -6,6 +6,7 @@ use App\Constants\ConsumptionCenterCategory;
 use App\Hotel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Hotel\HotelResource;
 use Symfony\Component\HttpFoundation\Response;
 
 class RestaurantController extends Controller
@@ -17,10 +18,35 @@ class RestaurantController extends Controller
      */
     public function index($id)
     {
-        $restaurants = Hotel::getConsumptionCenterBy($id, ConsumptionCenterCategory::RESTAURANTES);
+        // $restaurants =(Hotel::getConsumptionCenterBy($id, ConsumptionCenterCategory::RESTAURANTES));
+        $category = ConsumptionCenterCategory::RESTAURANTES;
+        // $restaurants = Hotel::with([
+        //   'consumptionCenter' => function ($query) use ($category) {
+        //       $query->has(
+        //           'schedules',
+        //           function ($query) {
+        //               $query->where('dia', '=', '3')->orderBy('hora_inicio', 'ASC');
+        //           }
+        //       )
+        //       ->where('categoria_id', $category);
+        //   }
+        // ])->findOrFail($id);
+
+        $restaurants = Hotel::with([
+          'consumptionCenter' => function ($query) use ($category) {
+              $query->where('categoria_id', $category);
+          },
+          'consumptionCenter.schedules' => function ($query) {
+              $query->where('dia', '=', getWeekDay())->orderBy('hora_inicio', 'ASC');
+          },
+        ])->findOrFail($id);
+
+        $restaurants = $restaurants->consumptionCenter->filter(function ($value, $key) {
+            return $value->schedules->count() > 0;
+        })->values()->all();
 
         return response([
-          'data' => $restaurants
+          'data' => $restaurants,
         ], Response::HTTP_CREATED);
     }
 
