@@ -20,16 +20,21 @@ class Hotel extends Model
 
     public static function getConsumptionCenterBy($id, $category)
     {
-        return Self::with([
-        'consumptionCenter' => function ($query) use ($category) {
-            $query->with([
-              'schedules' => function ($query) {
-                  $query->where('dia', '=', getWeekDay())->orderBy('hora_inicio', 'ASC');
-              }
-            ])
-            ->where('categoria_id', $category)
-            ->has('schedules');
-        }
-      ])->findOrFail($id);
+        // $restaurants = $restaurants->consumptionCenter->filter(function ($value, $key) {
+        //     return $value->schedules->count() > 0;
+        // })->values()->all();
+
+
+        return Hotel::with([
+          'consumptionCenter' => function ($query) use ($category) {
+              $query->where('categoria_id', $category)->whereHas('schedules', function ($query) {
+                  $query->where('dia', getWeekDay());
+              });
+          },
+          'consumptionCenter.schedules' => function ($query) {
+              $query->where('dia', getWeekDay())->orderBy('hora_inicio', 'ASC');
+          },
+        ])
+        ->findOrFail($id);
     }
 }

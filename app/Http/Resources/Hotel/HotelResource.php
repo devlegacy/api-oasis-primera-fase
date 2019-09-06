@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Hotel;
 
+use App\Http\Resources\ConsuptionCenter\ConsumptionCenterCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class HotelResource extends JsonResource
@@ -20,7 +21,7 @@ class HotelResource extends JsonResource
           ],
         ];
         $hasConsumtionCenter = count($this->attributes('consumption_center')->data);
-        $hotel = array_merge($hotel, $hasConsumtionCenter ? ['consumptionCenter' => $this->attributes('consumption_center')] : []);
+        $hotel = array_merge($hotel, $hasConsumtionCenter ? ['consumptionCenter' => ConsumptionCenterCollection::collection($this->consumptionCenter)] : []);
 
         return $hotel;
     }

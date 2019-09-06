@@ -6,6 +6,8 @@ use App\Constants\ConsumptionCenterCategory;
 use App\Hotel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ConsuptionCenter\ConsumptionCenterResource;
+use App\Http\Resources\Hotel\HotelResource;
 use Symfony\Component\HttpFoundation\Response;
 
 class BarController extends Controller
@@ -17,11 +19,11 @@ class BarController extends Controller
      */
     public function index($id)
     {
-        $restaurants = Hotel::getConsumptionCenterBy($id, ConsumptionCenterCategory::BARES);
+        $bares = new HotelResource(Hotel::getConsumptionCenterBy($id, ConsumptionCenterCategory::BARES));
 
         return response([
-          'data' => $restaurants
-        ], Response::HTTP_CREATED);
+        'data' => $bares,
+      ], Response::HTTP_CREATED);
     }
 
     /**
@@ -41,9 +43,12 @@ class BarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Hotel $hotel, $idRestaurant)
     {
-        //
+        $restaurant  = new ConsumptionCenterResource($hotel->consumptionCenter()->where('centro_consumo_id', $idRestaurant)->first());
+        return response([
+        'data' => $restaurant ,
+      ], Response::HTTP_CREATED);
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Constants\ConsumptionCenterCategory;
 use App\Hotel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ConsuptionCenter\ConsumptionCenterResource;
 use App\Http\Resources\Hotel\HotelResource;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,32 +19,7 @@ class RestaurantController extends Controller
      */
     public function index($id)
     {
-        // $restaurants =(Hotel::getConsumptionCenterBy($id, ConsumptionCenterCategory::RESTAURANTES));
-        $category = ConsumptionCenterCategory::RESTAURANTES;
-        // $restaurants = Hotel::with([
-        //   'consumptionCenter' => function ($query) use ($category) {
-        //       $query->has(
-        //           'schedules',
-        //           function ($query) {
-        //               $query->where('dia', '=', '3')->orderBy('hora_inicio', 'ASC');
-        //           }
-        //       )
-        //       ->where('categoria_id', $category);
-        //   }
-        // ])->findOrFail($id);
-
-        $restaurants = Hotel::with([
-          'consumptionCenter' => function ($query) use ($category) {
-              $query->where('categoria_id', $category);
-          },
-          'consumptionCenter.schedules' => function ($query) {
-              $query->where('dia', '=', getWeekDay())->orderBy('hora_inicio', 'ASC');
-          },
-        ])->findOrFail($id);
-
-        $restaurants = $restaurants->consumptionCenter->filter(function ($value, $key) {
-            return $value->schedules->count() > 0;
-        })->values()->all();
+        $restaurants = new HotelResource(Hotel::getConsumptionCenterBy($id, ConsumptionCenterCategory::RESTAURANTES));
 
         return response([
           'data' => $restaurants,
@@ -68,7 +44,7 @@ class RestaurantController extends Controller
      */
     public function show(Hotel $hotel, $idRestaurant)
     {
-        $restaurant  = $hotel->consumptionCenter()->where('centro_consumo_id', $idRestaurant)->get();
+        $restaurant  = new ConsumptionCenterResource($hotel->consumptionCenter()->where('centro_consumo_id', $idRestaurant)->first());
         return response([
           'data' => $restaurant ,
         ], Response::HTTP_CREATED);

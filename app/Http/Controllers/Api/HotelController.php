@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Constants\ConsumptionCenterCategory;
 use App\Constants\ConsumtionCenterCategory;
+use App\ConsumptionCenter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Hotel;
@@ -18,7 +20,32 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        //   return response([
+        //   // consumption_center
+        //   'data' => ConsumptionCenter::whereHas('schedules', function ($query) {
+        //       $query->where('dia', '3');
+        //   })->with(['schedules' => function ($query) {
+        //       $query->where('dia', '3');
+        //   }])->where('categoria_id', ConsumptionCenterCategory::RESTAURANTES)->get(),
+        // ], Response::HTTP_CREATED);
+        $category = ConsumptionCenterCategory::RESTAURANTES;
+        return response([
+        // consumption_center
+        'data' => Hotel::
+
+        with([
+          'consumptionCenter' => function ($query) use ($category) {
+              $query->where('categoria_id', $category)->whereHas('schedules', function ($query) {
+                  $query->where('dia', '3');
+              });
+          },
+          'consumptionCenter.schedules' => function ($query) {
+              $query->where('dia', '3')->orderBy('hora_inicio', 'ASC');
+          },
+        ])
+
+        ->findOrFail(1),
+      ], Response::HTTP_CREATED);
     }
 
     /**
