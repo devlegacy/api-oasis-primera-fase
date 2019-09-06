@@ -15,7 +15,18 @@
 							"name": "All",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{API}}hotels/1/restaurants",
 									"host": [
@@ -24,6 +35,13 @@
 									"path": [
 										"1",
 										"restaurants"
+									],
+									"query": [
+										{
+											"key": "Accept",
+											"value": "ap",
+											"disabled": true
+										}
 									]
 								}
 							},
@@ -33,16 +51,27 @@
 							"name": "Show",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"url": {
-									"raw": "{{API}}hotels/1/restaurants/23",
+									"raw": "{{API}}hotels/1/restaurants/32",
 									"host": [
 										"{{API}}hotels"
 									],
 									"path": [
 										"1",
 										"restaurants",
-										"23"
+										"32"
 									]
 								}
 							},
@@ -58,7 +87,18 @@
 							"name": "All",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{API}}hotels/1/bares",
 									"host": [
@@ -67,6 +107,77 @@
 									"path": [
 										"1",
 										"bares"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API}}hotels/1/bares/47",
+									"host": [
+										"{{API}}hotels"
+									],
+									"path": [
+										"1",
+										"bares",
+										"47"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Errors",
+					"item": [
+						{
+							"name": "Model Not Found",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{API}}hotels/4000/restaurants",
+									"host": [
+										"{{API}}hotels"
+									],
+									"path": [
+										"4000",
+										"restaurants"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": ""
+										}
 									]
 								}
 							},
