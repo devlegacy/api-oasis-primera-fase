@@ -1,12 +1,15 @@
-# Api Osasis
+# API Oasis
 
-## Technical data
+API REST basada en entrevista técnica Oasis
 
-```shell
+## Technical data | Pre requirements
 
+```bash
 php >= 7.3
 Apache: 2.4.41
 MariaDB: 10.4.6
+composer: current version.
+# Creatd with:
 XAMPP current version.
 ```
 
@@ -16,7 +19,7 @@ XAMPP current version.
   # Clone repository
   git clone https://github.com/devlegacy/api-oasis-primera-fase.git
 
-  # change directory to api-oasis-primera-fase
+  # Change directory to api-oasis-primera-fase
   cd ./api-oasis-primera-fase
 
   # Import/Load database
@@ -31,7 +34,13 @@ XAMPP current version.
 
 ## Configure .env file
 
-```shell
+```bash
+Database    : oasis_primera_fase
+User        : root # For development purpose
+Password    :
+```
+
+```bash
 # .env database example configuration
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -47,10 +56,12 @@ DB_PASSWORD=
   # Run
   php artisan serve
   # Prefer url: http://127.0.0.1:8000
+  # Start project in 8000 port
 ```
 
-## URL Activas
+## Active URL's
 
+- http://127.0.0.1:8000/api/hotels/1/
 - http://127.0.0.1:8000/api/hotels/1/restaurants
 - http://127.0.0.1:8000/api/hotels/1/restaurants/32
 - http://127.0.0.1:8000/api/hotels/1/bares
@@ -61,9 +72,13 @@ DB_PASSWORD=
 
 Se ha añadido una colección de postman junto a sus variables de entorno para probar las URI's realizadas para la API.
 
-+&nbsp;:open_file_folder: `project-name`
++&nbsp;:open_file_folder: `api-oasis-primera-fase`
 
 &nbsp;|&nbsp;&nbsp;+-- :open_file_folder: `postman`
+
+&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;--- :page_facing_up: [postman_collection](./postman/api-oasis-primera-fase.postman_collection.json)
+
+&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;--- :page_facing_up: [postman_environment](./postman/api-oasis-primera-fase.postman_environment.json)
 
 ![Postman](./postman/Captura.JPG)
 

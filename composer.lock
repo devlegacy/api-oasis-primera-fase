@@ -3119,16 +3119,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.4.15",
+            "version": "1.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "1f92a209c1a5a60f43c5bbff196177810e817095"
+                "reference": "ee576355042241c09a76d787d7a4bcd1694ee797"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/1f92a209c1a5a60f43c5bbff196177810e817095",
-                "reference": "1f92a209c1a5a60f43c5bbff196177810e817095",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/ee576355042241c09a76d787d7a4bcd1694ee797",
+                "reference": "ee576355042241c09a76d787d7a4bcd1694ee797",
                 "shasum": ""
             },
             "require": {
@@ -3137,17 +3137,17 @@
                 "facade/flare-client-php": "^1.0",
                 "facade/ignition-contracts": "^1.0",
                 "filp/whoops": "^2.4",
-                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
-                "monolog/monolog": "^1.12|^2.0",
+                "illuminate/support": "~5.5.0 || ~5.6.0 || ~5.7.0 || ~5.8.0 || ^6.0",
+                "monolog/monolog": "^1.12 || ^2.0",
                 "php": "^7.1",
                 "scrivo/highlight.php": "^9.15",
-                "symfony/console": "^3.4|^4.0",
-                "symfony/var-dumper": "^3.4|^4.0"
+                "symfony/console": "^3.4 || ^4.0",
+                "symfony/var-dumper": "^3.4 || ^4.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^2.14",
                 "mockery/mockery": "^1.2",
-                "orchestra/testbench": "^3.5|^3.6|^3.7|^3.8|^4.0"
+                "orchestra/testbench": "^3.5 || ^3.6 || ^3.7 || ^3.8 || ^4.0"
             },
             "suggest": {
                 "laravel/telescope": "^2.0"
@@ -3183,7 +3183,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-09-05T21:48:35+00:00"
+            "time": "2019-09-09T06:08:22+00:00"
         },
         {
             "name": "facade/ignition-contracts",
